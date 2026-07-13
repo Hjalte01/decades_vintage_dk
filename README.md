@@ -59,4 +59,3 @@ npm run check
 ## Demo data and privacy
 
 Uploaded demo images remain in that browser's local storage and are not sent anywhere. Clear them with **Nulstil eksempeldata** in the studio or by clearing the site's browser data. The demo includes `noindex, nofollow` metadata.
-# decades_vintage_dk
