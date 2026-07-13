@@ -1,5 +1,6 @@
 import { ArrowLeft, Check, Download, ImagePlus, LayoutDashboard, PackagePlus, Pencil, RotateCcw, Search, Trash2, X } from 'lucide-react'
 import { useEffect, useMemo, useState, type FormEvent } from 'react'
+import { Link } from 'react-router-dom'
 import { locations } from '../data/seed'
 import { createDatasetExport } from '../services/browserCatalog'
 import { useCatalog } from '../state/CatalogContext'
@@ -70,7 +71,7 @@ export function StudioPage() {
   }
 
   return <section className="studio-page">
-    <header className="studio-header"><div><span className="studio-mark">D</span><div><strong>Decades Studio</strong><small>Privat konceptdemo</small></div></div><a href="/">Se hjemmesiden ↗</a></header>
+    <header className="studio-header"><div><span className="studio-mark">D</span><div><strong>Decades Studio</strong><small>Privat konceptdemo</small></div></div><Link to="/">Se hjemmesiden ↗</Link></header>
     <div className="studio-shell">
       <aside className="studio-sidebar"><button className={view === 'dashboard' ? 'active' : ''} onClick={() => setView('dashboard')}><LayoutDashboard/>Varer</button><button className={view === 'new' ? 'active' : ''} onClick={() => setView('new')}><PackagePlus/>Opret vare</button><div className="studio-user"><span>DV</span><div><strong>Demo-bruger</strong><small>Ejer</small></div></div></aside>
       <div className="studio-content">
