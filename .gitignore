@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.wrangler/
+.direnv/
+result
+*.local
+.env
+.env.*
+!.env.example
+playwright-report/
+test-results/
+tmp/
