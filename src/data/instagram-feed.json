@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "source": "fallback",
+  "updatedAt": null,
+  "latestIds": [
+    "social-1",
+    "social-2",
+    "social-3",
+    "social-4",
+    "social-5",
+    "social-6",
+    "social-7",
+    "social-8"
+  ],
+  "viralIds": [],
+  "posts": {
+    "social-1": {
+      "id": "social-1",
+      "caption": "Sommer trend?? 👀",
+      "publishedAt": "2026-07-11",
+      "image": "images/social/Dapd0UdthqR.webp",
+      "postUrl": "https://www.instagram.com/reel/Dapd0UdthqR/",
+      "mediaType": "REELS"
+    },
+    "social-2": {
+      "id": "social-2",
+      "caption": "Nævn et bedre outfit! 🧡",
+      "publishedAt": "2026-07-09",
+      "image": "images/social/DalIyTYtAWc.webp",
+      "postUrl": "https://www.instagram.com/reel/DalIyTYtAWc/",
+      "mediaType": "REELS"
+    },
+    "social-3": {
+      "id": "social-3",
+      "caption": "Det er self bare en joke. Han smiler meget mere irl 🌸🩵✨",
+      "publishedAt": "2026-07-06",
+      "image": "images/social/DadSnkAtpnN.webp",
+      "postUrl": "https://www.instagram.com/reel/DadSnkAtpnN/",
+      "mediaType": "REELS"
+    },
+    "social-4": {
+      "id": "social-4",
+      "caption": "Bedste farver at mixe 💛🩵🩷",
+      "publishedAt": "2026-07-05",
+      "image": "images/social/DaanqTytc6M.webp",
+      "postUrl": "https://www.instagram.com/reel/DaanqTytc6M/",
+      "mediaType": "REELS"
+    },
+    "social-5": {
+      "id": "social-5",
+      "caption": "Benhårdt Roskilde fit 👊",
+      "publishedAt": "2026-07-03",
+      "image": "images/social/DaVKmWDAzo4.webp",
+      "postUrl": "https://www.instagram.com/reel/DaVKmWDAzo4/",
+      "mediaType": "REELS"
+    },
+    "social-6": {
+      "id": "social-6",
+      "caption": "Pauser så du kan se min nye taske 👜",
+      "publishedAt": "2026-06-30",
+      "image": "images/social/DaNb3ycNZCn.webp",
+      "postUrl": "https://www.instagram.com/reel/DaNb3ycNZCn/",
+      "mediaType": "REELS"
+    },
+    "social-7": {
+      "id": "social-7",
+      "caption": "Jeg gør det for folket 😮‍💨",
+      "publishedAt": "2026-06-29",
+      "image": "images/social/DaK9iBBtjmi.webp",
+      "postUrl": "https://www.instagram.com/reel/DaK9iBBtjmi/",
+      "mediaType": "REELS"
+    },
+    "social-8": {
+      "id": "social-8",
+      "caption": "Lavede videoen inden det blev 30 GRADER I DK!!!!! 🤯",
+      "publishedAt": "2026-06-28",
+      "image": "images/social/DaH5zoLt_rR.webp",
+      "postUrl": "https://www.instagram.com/reel/DaH5zoLt_rR/",
+      "mediaType": "REELS"
+    }
+  }
+}

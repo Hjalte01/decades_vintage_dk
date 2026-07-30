@@ -45,11 +45,32 @@ export interface EventItem {
   link?: string
 }
 
+export type SocialMediaType = 'IMAGE' | 'VIDEO' | 'CAROUSEL_ALBUM' | 'REELS'
+export type SocialFeedSource = 'fallback' | 'fixture' | 'instagram'
+
 export interface SocialPost {
   id: string
-  shortcode: string
   caption: string
   publishedAt: string
   image: string
   postUrl: string
+  mediaType: SocialMediaType
+  viewCount?: number
+}
+
+export interface SocialFeedManifest {
+  schemaVersion: 1
+  source: SocialFeedSource
+  updatedAt: string | null
+  latestIds: string[]
+  viralIds: string[]
+  posts: Record<string, SocialPost>
+}
+
+export interface SocialFeed {
+  schemaVersion: 1
+  source: SocialFeedSource
+  updatedAt: string | null
+  latest: SocialPost[]
+  viral: SocialPost[]
 }

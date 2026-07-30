@@ -29,7 +29,8 @@ The command prints a random `trycloudflare.com` URL. Keep the terminal open whil
 - Danish-first customer experience with English switch
 - Product browsing, categories, detail pages and store availability
 - Three shops plus the event-only Rødovre warehouse
-- Events and a local Instagram-style slideshow
+- Events and a versioned local Instagram snapshot
+- Prepared “most watched” showcase that stays hidden until verified insights exist
 - Responsive mobile navigation and production service worker
 - Staff inventory dashboard with status changes
 - New product form with local image upload, autosaved draft, and publish/draft actions
@@ -49,6 +50,24 @@ The generated hero photograph and all product illustrations are original demo as
 - Custom domain and production analytics
 
 This keeps the first decision genuinely free. If the concept is approved, the next stage can replace browser storage with Cloudflare D1/R2 and add owner-created staff accounts without rebuilding the customer interface. Commerce stays behind an `off | inquiry | checkout` feature mode and should only be enabled after the store decides it helps.
+
+## Prepared Instagram synchronization
+
+The customer app reads `src/data/instagram-feed.json` at build time and keeps all Instagram covers local. The checked-in file is an honest fallback: it contains the latest curated posts, no invented view totals, and no viral ranking.
+
+`npm run sync:instagram` prepares a new manifest and covers through Meta's official Instagram API. It requires an owner-authorized Professional Business or Creator account with `instagram_business_basic` and `instagram_business_manage_insights`. Keep `INSTAGRAM_ACCESS_TOKEN` server-side; it must never use a `VITE_` prefix or be exposed to the browser.
+
+The import selects the latest eight parent posts and the three eligible posts with the highest lifetime organic view totals in the preceding 90-day window. Meta insights can lag, so posts younger than 48 hours remain in the latest feed but are not ranked yet. The script publishes the new manifest only after all required data and covers succeed.
+
+No database is required for this read-only showcase: the generated JSON manifest and local image files are the deployable state. Fixture runs are test-only, require explicit non-production output paths, and cannot be loaded as verified insights by the customer app.
+
+See the credential-free fixture and output options with:
+
+```bash
+npm run sync:instagram -- --help
+```
+
+There is deliberately no timer in this milestone. Once the shop grants account access, the intended activation is a declarative `systemd` timer on `mobile-dev`, followed by a deployment from the generated manifest and covers through the existing GitHub Pages workflow.
 
 ## Checks
 

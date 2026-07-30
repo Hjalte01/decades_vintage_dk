@@ -8,6 +8,7 @@
     "demo": "bash scripts/demo.sh",
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 0.0.0.0",
+    "sync:instagram": "node scripts/sync-instagram.mjs",
     "test": "vitest run",
     "check": "npm run test && npm run build"
   },

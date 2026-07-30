@@ -4,6 +4,22 @@ import type { SocialPost } from '../types'
 
 const AUTOPLAY_DELAY = 5000
 
+function mediaLabel(post: SocialPost, isDa: boolean) {
+  if (post.mediaType === 'REELS') return 'Reel'
+  if (post.mediaType === 'CAROUSEL_ALBUM') return isDa ? 'Karrusel' : 'Carousel'
+  return isDa ? 'Opslag' : 'Post'
+}
+
+function formatPublishedAt(value: string, isDa: boolean) {
+  const date = new Date(/^\d{4}-\d{2}-\d{2}$/.test(value) ? `${value}T12:00:00` : value)
+  if (!Number.isFinite(date.getTime())) return value
+  return new Intl.DateTimeFormat(isDa ? 'da-DK' : 'en-GB', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  }).format(date)
+}
+
 export function SocialCarousel({ posts, isDa }: { posts: SocialPost[]; isDa: boolean }) {
   const trackRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
@@ -76,11 +92,13 @@ export function SocialCarousel({ posts, isDa }: { posts: SocialPost[]; isDa: boo
 
   const stopAutoplay = () => setManuallyPaused(true)
 
+  if (posts.length === 0) return null
+
   return (
     <section
       className="social-carousel"
       aria-roledescription="carousel"
-      aria-label={isDa ? 'Seneste Instagram Reels' : 'Latest Instagram Reels'}
+      aria-label={isDa ? 'Seneste Instagram-opslag' : 'Latest Instagram posts'}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onFocus={() => setFocused(true)}
@@ -102,13 +120,18 @@ export function SocialCarousel({ posts, isDa }: { posts: SocialPost[]; isDa: boo
             aria-roledescription="slide"
             aria-label={`${index + 1} / ${posts.length}`}
           >
-            <a href={post.postUrl} target="_blank" rel="noreferrer" aria-label={`${post.caption} — Instagram`}>
+            <a
+              href={post.postUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${post.caption || mediaLabel(post, isDa)} — Instagram (${isDa ? 'åbner i ny fane' : 'opens in a new tab'})`}
+            >
               <div className="social-image-wrap">
                 <img src={post.image} alt="" loading="lazy" />
-                <span className="reel-badge">Reel <ExternalLink size={13} aria-hidden="true" /></span>
+                <span className="social-media-badge">{mediaLabel(post, isDa)} <ExternalLink size={13} aria-hidden="true" /></span>
               </div>
-              <p>{post.caption}</p>
-              <time dateTime={post.publishedAt}>{new Intl.DateTimeFormat(isDa ? 'da-DK' : 'en-GB', { day:'numeric', month:'short', year:'numeric' }).format(new Date(`${post.publishedAt}T12:00:00`))}</time>
+              <p>{post.caption || (isDa ? 'Se opslaget på Instagram' : 'View the post on Instagram')}</p>
+              <time dateTime={post.publishedAt}>{formatPublishedAt(post.publishedAt, isDa)}</time>
             </a>
           </article>
         ))}

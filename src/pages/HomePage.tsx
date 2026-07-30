@@ -2,9 +2,19 @@ import { ArrowRight, Camera, MapPin, Sparkles } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { ProductCard } from '../components/ProductCard'
 import { SocialCarousel } from '../components/SocialCarousel'
-import { events, locations, socialPosts } from '../data/seed'
+import { ViralShowcase } from '../components/ViralShowcase'
+import { socialFeed } from '../data/instagramFeed'
+import { events, locations } from '../data/seed'
 import { useCatalog } from '../state/CatalogContext'
 import { useLanguage } from '../state/LanguageContext'
+
+function formatFeedDate(value: string, isDa: boolean) {
+  return new Intl.DateTimeFormat(isDa ? 'da-DK' : 'en-GB', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  }).format(new Date(value))
+}
 
 export function HomePage() {
   const { products } = useCatalog()
@@ -44,8 +54,21 @@ export function HomePage() {
 
     <section className="section social-section">
       <div className="section-heading"><div><span className="eyebrow"><Camera size={15}/> @decadesvintagedk</span><h2>{isDa ? 'Fra vores feed' : 'From our feed'}</h2></div><a className="text-link" href="https://www.instagram.com/decadesvintagedk/" target="_blank" rel="noreferrer">Instagram <ArrowRight size={17}/></a></div>
-      <SocialCarousel posts={socialPosts} isDa={isDa} />
-      <p className="demo-note">{isDa ? 'Kurateret, lokal kopi af Decades’ Reels. Opslagene opdateres ikke automatisk.' : 'A curated local snapshot of Decades’ Reels. Posts do not update automatically.'}</p>
+      <ViralShowcase posts={socialFeed.viral} isDa={isDa} updatedAt={socialFeed.updatedAt} />
+      <div className="social-latest-heading">
+        <span className="eyebrow">{isDa ? `Seneste ${socialFeed.latest.length}` : `Latest ${socialFeed.latest.length}`}</span>
+        <h3>{isDa ? 'Nyt fra Instagram' : 'New from Instagram'}</h3>
+      </div>
+      <SocialCarousel posts={socialFeed.latest} isDa={isDa} />
+      <p className="demo-note">
+        {socialFeed.source === 'instagram'
+          ? (isDa
+              ? `Synkroniseret fra Instagram ${formatFeedDate(socialFeed.updatedAt!, true)}.`
+              : `Synchronized from Instagram on ${formatFeedDate(socialFeed.updatedAt!, false)}.`)
+          : (isDa
+              ? 'Kurateret, lokalt snapshot af Decades’ Instagram-opslag. Synkronisering er endnu ikke automatisk.'
+              : 'A curated local snapshot of Decades’ Instagram posts. Synchronization is not automatic yet.')}
+      </p>
     </section>
 
     <section className="event-teaser">

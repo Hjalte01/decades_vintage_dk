@@ -1,4 +1,4 @@
-import type { EventItem, Product, SocialPost, StoreLocation } from '../types'
+import type { EventItem, Product, StoreLocation } from '../types'
 
 const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`
 
@@ -42,15 +42,4 @@ export const seedProducts: Product[] = [
 
 export const events: EventItem[] = [
   { id:'e1', date:'2026-08-23T10:00:00', title:{da:'Kæmpe lagersalg',en:'Huge warehouse sale'}, description:{da:'En hel dag med stativer, kilo-fund, musik og gode priser. Mere info kommer snart.',en:'A full day of rails, kilo finds, music and good prices. More info soon.'}, place:'Roskildevej 398, Rødovre' },
-]
-
-export const socialPosts: SocialPost[] = [
-  { id:'social-1', shortcode:'Dapd0UdthqR', caption:'Sommer trend?? 👀', publishedAt:'2026-07-11', image:asset('images/social/Dapd0UdthqR.webp'), postUrl:'https://www.instagram.com/reel/Dapd0UdthqR/' },
-  { id:'social-2', shortcode:'DalIyTYtAWc', caption:'Nævn et bedre outfit! 🧡', publishedAt:'2026-07-09', image:asset('images/social/DalIyTYtAWc.webp'), postUrl:'https://www.instagram.com/reel/DalIyTYtAWc/' },
-  { id:'social-3', shortcode:'DadSnkAtpnN', caption:'Det er self bare en joke. Han smiler meget mere irl 🌸🩵✨', publishedAt:'2026-07-06', image:asset('images/social/DadSnkAtpnN.webp'), postUrl:'https://www.instagram.com/reel/DadSnkAtpnN/' },
-  { id:'social-4', shortcode:'DaanqTytc6M', caption:'Bedste farver at mixe 💛🩵🩷', publishedAt:'2026-07-05', image:asset('images/social/DaanqTytc6M.webp'), postUrl:'https://www.instagram.com/reel/DaanqTytc6M/' },
-  { id:'social-5', shortcode:'DaVKmWDAzo4', caption:'Benhårdt Roskilde fit 👊', publishedAt:'2026-07-03', image:asset('images/social/DaVKmWDAzo4.webp'), postUrl:'https://www.instagram.com/reel/DaVKmWDAzo4/' },
-  { id:'social-6', shortcode:'DaNb3ycNZCn', caption:'Pauser så du kan se min nye taske 👜', publishedAt:'2026-06-30', image:asset('images/social/DaNb3ycNZCn.webp'), postUrl:'https://www.instagram.com/reel/DaNb3ycNZCn/' },
-  { id:'social-7', shortcode:'DaK9iBBtjmi', caption:'Jeg gør det for folket 😮‍💨', publishedAt:'2026-06-29', image:asset('images/social/DaK9iBBtjmi.webp'), postUrl:'https://www.instagram.com/reel/DaK9iBBtjmi/' },
-  { id:'social-8', shortcode:'DaH5zoLt_rR', caption:'Lavede videoen inden det blev 30 GRADER I DK!!!!! 🤯', publishedAt:'2026-06-28', image:asset('images/social/DaH5zoLt_rR.webp'), postUrl:'https://www.instagram.com/reel/DaH5zoLt_rR/' },
 ]
