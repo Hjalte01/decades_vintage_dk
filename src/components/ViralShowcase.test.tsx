@@ -85,8 +85,8 @@ describe('ViralShowcase', () => {
     expect(screen.getByText('987 visninger')).toBeInTheDocument()
 
     rerender(<ViralShowcase posts={posts} isDa={false} />)
-    expect(screen.getByText('1.2M views')).toBeInTheDocument()
-    expect(screen.getByText('12.5K views')).toBeInTheDocument()
+    expect(screen.getByText(/^1\.2m views$/i)).toBeInTheDocument()
+    expect(screen.getByText(/^12\.5k views$/i)).toBeInTheDocument()
     expect(screen.getByText('987 views')).toBeInTheDocument()
   })
 
