@@ -55,6 +55,7 @@ export interface SocialPost {
   image: string
   postUrl: string
   mediaType: SocialMediaType
+  likeCount?: number
   viewCount?: number
 }
 

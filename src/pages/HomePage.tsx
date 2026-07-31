@@ -1,8 +1,8 @@
 import { ArrowRight, Camera, MapPin, Sparkles } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { InstagramShowcase } from '../components/InstagramShowcase'
 import { ProductCard } from '../components/ProductCard'
 import { SocialCarousel } from '../components/SocialCarousel'
-import { ViralShowcase } from '../components/ViralShowcase'
 import { socialFeed } from '../data/instagramFeed'
 import { events, locations } from '../data/seed'
 import { useCatalog } from '../state/CatalogContext'
@@ -21,6 +21,8 @@ export function HomePage() {
   const { language } = useLanguage()
   const published = products.filter((item) => item.status === 'published').slice(0, 4)
   const isDa = language === 'da'
+  const hasRankedShowcase = socialFeed.viral.length === 3
+  const showcasePosts = hasRankedShowcase ? socialFeed.viral : socialFeed.latest.slice(0, 3)
   const mapLink = (address: string, area: string) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${address}, ${area}`)}`
   return <>
     <section className="hero">
@@ -54,7 +56,12 @@ export function HomePage() {
 
     <section className="section social-section">
       <div className="section-heading"><div><span className="eyebrow"><Camera size={15}/> @decadesvintagedk</span><h2>{isDa ? 'Fra vores feed' : 'From our feed'}</h2></div><a className="text-link" href="https://www.instagram.com/decadesvintagedk/" target="_blank" rel="noreferrer">Instagram <ArrowRight size={17}/></a></div>
-      <ViralShowcase posts={socialFeed.viral} isDa={isDa} updatedAt={socialFeed.updatedAt} />
+      <InstagramShowcase
+        posts={showcasePosts}
+        isDa={isDa}
+        mode={hasRankedShowcase ? 'ranked' : 'featured'}
+        updatedAt={socialFeed.updatedAt}
+      />
       <div className="social-latest-heading">
         <span className="eyebrow">{isDa ? `Seneste ${socialFeed.latest.length}` : `Latest ${socialFeed.latest.length}`}</span>
         <h3>{isDa ? 'Nyt fra Instagram' : 'New from Instagram'}</h3>
@@ -66,8 +73,8 @@ export function HomePage() {
               ? `Synkroniseret fra Instagram ${formatFeedDate(socialFeed.updatedAt!, true)}.`
               : `Synchronized from Instagram on ${formatFeedDate(socialFeed.updatedAt!, false)}.`)
           : (isDa
-              ? 'Kurateret, lokalt snapshot af Decades’ Instagram-opslag. Synkronisering er endnu ikke automatisk.'
-              : 'A curated local snapshot of Decades’ Instagram posts. Synchronization is not automatic yet.')}
+              ? `Kurateret, lokalt snapshot af Decades’ Instagram-opslag${socialFeed.updatedAt ? `, manuelt opdateret ${formatFeedDate(socialFeed.updatedAt, true)}` : ''}. Likes er et dateret øjebliksbillede — ikke live.`
+              : `A curated local snapshot of Decades’ Instagram posts${socialFeed.updatedAt ? `, manually updated ${formatFeedDate(socialFeed.updatedAt, false)}` : ''}. Likes are a dated snapshot — not live.`)}
       </p>
     </section>
 

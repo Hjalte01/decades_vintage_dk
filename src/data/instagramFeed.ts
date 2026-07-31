@@ -78,6 +78,12 @@ export function validateSocialFeedManifest(value: unknown): SocialFeedManifest {
       throw new Error(`Instagram feed post ${key} has an invalid permalink`)
     }
     if (
+      candidate.likeCount !== undefined
+      && (!Number.isSafeInteger(candidate.likeCount) || (candidate.likeCount as number) < 0)
+    ) {
+      throw new Error(`Instagram feed post ${key} has an invalid like count`)
+    }
+    if (
       candidate.viewCount !== undefined
       && (!Number.isSafeInteger(candidate.viewCount) || (candidate.viewCount as number) < 0)
     ) {

@@ -30,7 +30,7 @@ The command prints a random `trycloudflare.com` URL. Keep the terminal open whil
 - Product browsing, categories, detail pages and store availability
 - Three shops plus the event-only Rødovre warehouse
 - Events and a versioned local Instagram snapshot
-- Prepared “most watched” showcase that stays hidden until verified insights exist
+- Editorial three-post Instagram spotlight with dated likes, plus “most watched” ranking prepared for verified insights
 - Responsive mobile navigation and production service worker
 - Staff inventory dashboard with status changes
 - New product form with local image upload, autosaved draft, and publish/draft actions
@@ -53,7 +53,7 @@ This keeps the first decision genuinely free. If the concept is approved, the ne
 
 ## Prepared Instagram synchronization
 
-The customer app reads `src/data/instagram-feed.json` at build time and keeps all Instagram covers local. The checked-in file is an honest fallback: it contains the latest curated posts, no invented view totals, and no viral ranking.
+The customer app reads `src/data/instagram-feed.json` at build time and keeps all Instagram covers local. The checked-in file is a manually dated fallback: it contains six newly curated posts plus two retained posts, a dated like snapshot for the three-post spotlight, no invented view totals, and no viral ranking. Those likes are not live and are shown only when all three counts and the capture date are present.
 
 `npm run sync:instagram` prepares a new manifest and covers through Meta's official Instagram API. It requires an owner-authorized Professional Business or Creator account with `instagram_business_basic` and `instagram_business_manage_insights`. Keep `INSTAGRAM_ACCESS_TOKEN` server-side; it must never use a `VITE_` prefix or be exposed to the browser.
 
